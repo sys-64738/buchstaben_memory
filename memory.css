@@ -15,30 +15,15 @@ body {
   background: #fff;
 }
 
-
 .mit-rand {
   margin: 10px;
   border: 1px solid blue;
 }
 
-/*
-.karte {
-  margin: 10px;
-  width: 20vw;
-  height: 20vw;
-  border: 1px solid blue;
-  height: 100px;
-  float: left;
-}*/
-
 .unsichtbar {
   display: none;
-};
-
-.karten-inhalt {
-  text-align: center;
-  font-size: 200%;
 }
+
 #spielfeld {
  height: 80%; 
  border: 1px solid #ccc; 
@@ -52,7 +37,9 @@ body {
   position:relative;
 }
 
-.tile {
+.karten-inhalt {
+  text-align: center;
+  font-size: 300%;  
   position: absolute; 
   top:0; 
   right:0; 
@@ -61,6 +48,6 @@ body {
   border: 1px solid blue;
 }
 
-#foot {
-  clear: both;
-}  
+.verdeckt {
+  background: blue;
+}

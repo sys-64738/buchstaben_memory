@@ -11,14 +11,29 @@
     <script src="memory.js"></script>
   </head>
   <body>
-    <h1>Buchstaben-Memory</h1>
+    <div id="titel" class="mit-rand">
+      <strong>Buchstaben-Memory</strong>
+    </div>
     
-    <div id="start-params">
+    <div id="start-params" class="mit-rand">
       Spiel starten mit <input id="anzahl-paare" value="5" type="number" /> Buchstaben <button id="los_gehts">Los geht's!</button>
     </div>
     
-    <div id="spielfeld">
+    <div id="status" class="mit-rand">
+      Anzahl Paare auswählen und auf "Los geht's" klicken!
     </div>
+    
+    <div  id="musterkarte" class="karte unsichtbar">
+      
+      <div class="tile">
+        <p></p>
+      </div>
+    </div>
+
+    <div id="spielfeld" >
+    </div>
+    
+    <div id="foot"/>
     
   </body>
 </html>

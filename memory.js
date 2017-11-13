@@ -17,6 +17,8 @@
   });
 
   function spielStarten() {
+    $spielfeld.removeClass('paar-passt');
+    
     anzahlPaare = parseInt( $("#anzahl-paare").val() );    
     if(anzahlPaare < 3 || anzahlPaare > alphabet.length) {
       $status.html("Nicht weniger als 3, nicht mehr als " + alphabet.length + "!");     

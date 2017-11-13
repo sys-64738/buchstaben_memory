@@ -25,7 +25,7 @@ body {
 }
 
 #spielfeld {
- height: 80%; 
+ height: 70%; 
  border: 1px solid #ccc; 
  padding: 1rem 1rem 0 0; 
  margin: 0 auto; 
@@ -39,7 +39,7 @@ body {
 
 .karten-inhalt {
   text-align: center;
-  font-size: 300%;  
+  font-size: 200%;  
   position: absolute; 
   top:0; 
   right:0; 
@@ -50,4 +50,15 @@ body {
 
 .verdeckt {
   background: blue;
+}
+
+.aufgedeckt {
+  background: khaki;
+}
+
+.paar-passt {
+  background: lightgreen;
+}
+.paar-passt-nicht {
+  background: salmon;
 }

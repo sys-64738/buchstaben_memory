@@ -44,14 +44,22 @@ body {
 }
 
 .karten-inhalt {
-  text-align: center;
-  font-size: 200%;  
   position: absolute; 
   top:0; 
   right:0; 
   bottom: 1rem;
   left: 1rem; 
   border: 1px solid blue;
+
+  /* Zentirerung */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.karten-text {
+  font-size: 200%;  
 }
 
 .verdeckt {

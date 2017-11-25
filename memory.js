@@ -12,6 +12,7 @@
     $spielfeld  = $("#spielfeld");
     $status = $("#status");
     $('#los_gehts').button().on('click', spielStarten);
+    $('#anzahl-paare').spinner();
     $(document).on('click', '.karten-inhalt.verdeckt', karteGeklickt);
   });
 
@@ -43,6 +44,8 @@
   
   // Karte aufdecken oder wieder zuklappen
   function karteGeklickt(e) {
+    e.preventDefault();
+    
     var $karte = $(this);
 
     var $aufgedeckteKarten = $spielfeld.find('.aufgedeckt');
@@ -55,7 +58,7 @@
 
     $karte.removeClass('verdeckt');
     $karte.addClass('aufgedeckt');
-    $karte.find('p').removeClass('unsichtbar');
+    $karte.find('.karten-text').removeClass('unsichtbar');
 
     $aufgedeckteKarten = $spielfeld.find('.aufgedeckt');
     if($aufgedeckteKarten.length == 2) {
@@ -79,7 +82,7 @@
       } 
       else {
         $aufgedeckteKarten.addClass('paar-passt-nicht', 3000, function() {
-          $(this).find('p').addClass('unsichtbar', 1000);
+          $(this).find('.karten-text').addClass('unsichtbar', 1000);
           $(this).switchClass('aufgedeckt paar-passt-nicht', 'verdeckt', 1000);
         } );
         $status.html("Passt nicht!");
@@ -123,9 +126,15 @@
     $spielfeld.empty();
     for(var i=0; i < karten.length; i++) {
       $neueKarte = $musterKarte.clone();
+      
+      // Text-Markierung deaktivieren (der Buchstabe wurde beim Anklicken sonst markiert)
+      $neueKarte.attr('unselectable', 'on')
+        .css('user-select', 'none')
+        .on('selectstart dragstart', false);
+        
       $neueKarte.attr('id', "karte" + i);
       $neueKarte.find('.karten-inhalt').attr('data-buchstabe', karten[i]);
-      $neueKarte.find("p").html(karten[i]);      
+      $neueKarte.find(".karten-text").html(karten[i]);      
       $neueKarte.removeClass("unsichtbar");
       $spielfeld.append($neueKarte);
     }

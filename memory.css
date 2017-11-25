@@ -1,3 +1,8 @@
+@font-face {
+    font-family: DruckschriftBayern;
+    src: url('Druckschrift_BY_WOK.ttf');
+    /* gefunden auf: http://schulschriften.net/kostenlose-schriften */
+}
 /***************************************
    Default Styles
 ************************************** */
@@ -10,7 +15,7 @@ html, body {
 }
 
 body {
-  font: 100% Druckschrift BY WOK; /* gefunden auf: http://schulschriften.net/kostenlose-schriften/ */
+  font: 200% DruckschriftBayern;  
   color: #000;
   background: #fff;
 }
@@ -22,6 +27,7 @@ body {
 
 .unsichtbar {
   display: none;
+  color: blue;
 }
 
 #spielfeld {

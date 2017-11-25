@@ -5,20 +5,20 @@
     <meta charset="utf-8">
     <title>Buchstaben-Memory</title>
 
-    <link rel="stylesheet" href="memory.css" type="text/css" />
+    <link rel="stylesheet" href="jquery-ui-1.12.1/jquery-ui.min.css" type="text/css" />
+    <script src="jquery-ui-1.12.1/external/jquery/jquery.js"></script>
+    <script src="jquery-ui-1.12.1/jquery-ui.min.js"></script>
 
-    <script src="jquery-3.2.1.js"></script>
+    <link rel="stylesheet" href="memory.css" type="text/css" />    
     <script src="memory.js"></script>
   </head>
   <body>
-    <div id="titel" class="mit-rand">
-      <h1>Buchstaben-Memory</h1>
-    </div>
+    <div id="titel" class="mit-rand">Buchstaben-Memory</div>
     
     <div id="start-params" class="mit-rand">
       Spiel starten mit 
-      <input id="anzahl-paare" value="5" type="number" /> Buchstaben 
-      <button id="los_gehts">Los geht's!</button>
+      <input class="ui-widget" id="anzahl-paare" value="5" type="number" /> Buchstaben 
+      <span class="ui-button ui-widget" id="los_gehts">Los geht's!</span>
     </div>
     
     <div id="status" class="mit-rand">

@@ -6,19 +6,16 @@
   var anzahlPaare;
   var $spielfeld;
   var $status;
-  //var $aufgedeckteKarten =  $([]);
 
   // Nach dem Laden der Seite die Ereignisse binden:
   $(document).ready(function() {
     $spielfeld  = $("#spielfeld");
     $status = $("#status");
-    $('#los_gehts').on('click', spielStarten);
+    $('#los_gehts').button().on('click', spielStarten);
     $(document).on('click', '.karten-inhalt.verdeckt', karteGeklickt);
   });
 
   function spielStarten() {
-    $spielfeld.removeClass('paar-passt');
-    
     anzahlPaare = parseInt( $("#anzahl-paare").val() );    
     if(anzahlPaare < 3 || anzahlPaare > alphabet.length) {
       $status.html("Nicht weniger als 3, nicht mehr als " + alphabet.length + "!");     
@@ -69,23 +66,21 @@
         $status.html("Super!");
 
         $aufgedeckteKarten.removeClass('aufgedeckt')
-                          .addClass('paar-passt')
-                          .delay(2000).queue(function() {
-          $(this).removeClass('paar-passt');
-          $(this).dequeue();
+                          .addClass('paar-passt', 500, function() {
+          $(this).removeClass('paar-passt', 4000);
         } );
 
         if($spielfeld.find('.verdeckt').length == 0) {
           $status.html("Gewonnen!!! Nochmal?");
-          $spielfeld.addClass('paar-passt');
+          $spielfeld.addClass('paar-passt', 2000, function() {
+            $(this).removeClass('paar-passt', 3000);
+          } );
         }
       } 
       else {
-        $aufgedeckteKarten.addClass('paar-passt-nicht')
-                          .delay(2000).queue(function() {
-          $(this).find('p').addClass('unsichtbar');
-          $(this).removeClass('aufgedeckt').removeClass('paar-passt-nicht').addClass('verdeckt');
-          $(this).dequeue();
+        $aufgedeckteKarten.addClass('paar-passt-nicht', 3000, function() {
+          $(this).find('p').addClass('unsichtbar', 1000);
+          $(this).switchClass('aufgedeckt paar-passt-nicht', 'verdeckt', 1000);
         } );
         $status.html("Passt nicht!");
       }

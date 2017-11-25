@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <title>Buchstaben-Memory</title>
+
+    <link rel="stylesheet" href="memory.css" type="text/css" />
+
+    <script src="jquery-3.2.1.js"></script>
+    <script src="memory.js"></script>
+  </head>
+  <body>
+    <div id="titel" class="mit-rand">
+      <h1>Buchstaben-Memory</h1>
+    </div>
+    
+    <div id="start-params" class="mit-rand">
+      Spiel starten mit 
+      <input id="anzahl-paare" value="5" type="number" /> Buchstaben 
+      <button id="los_gehts">Los geht's!</button>
+    </div>
+    
+    <div id="status" class="mit-rand">
+      Anzahl Paare auswählen und auf "Los geht's" klicken!
+    </div>
+    
+    <div  id="musterkarte" class="karte unsichtbar">      
+      <div class="karten-inhalt verdeckt">
+        <p class="unsichtbar"></p>
+      </div>
+    </div>
+
+    <div id="spielfeld" >
+    </div>
+
+  </body>
+</html>

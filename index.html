@@ -13,19 +13,21 @@
     <script src="memory.js"></script>
   </head>
   <body>
-    <div id="titel" class="mit-rand">Buchstaben-Memory</div>
-    
-    <div id="start-params" class="mit-rand">
-      Spiel starten mit 
-      <input id="anzahl-paare" value="5"  /> Buchstaben 
-      <span class="ui-button ui-widget" id="los_gehts">Los geht's!</span>
+    <div id="titel" >
+      <div >
+        <strong>Buchstaben-Memory</strong><br>
+        <small>von Burkhard Meier</small>
+      </div>      
+        <br>        
+      <div>
+        Karten: <span class="ui-button" id="anzahl-karten">10</span>
+        <span class="ui-button ui-widget" id="karten-plus">+</span>      
+        <span class="ui-button ui-widget" id="karten-minus">-</span>      
+        <span class="ui-button ui-widget" id="los_gehts">Start!</span> 
+      </div>
     </div>
-    
-    <div id="status" class="mit-rand">
-      Anzahl Paare auswählen und auf "Los geht's" klicken!
-    </div>
-    
-    <div  id="musterkarte" class="karte unsichtbar">      
+        
+    <div  id="musterkarte" class="horizontal unsichtbar">      
       <div class="karten-inhalt verdeckt">
         <div class="karten-text unsichtbar"></div>
       </div>

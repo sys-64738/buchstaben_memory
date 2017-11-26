@@ -5,41 +5,62 @@
   var alphabet = "abcdefghijklmnopqrstuvwxyz";
   var anzahlPaare;
   var $spielfeld;
-  var $status;
 
   // Nach dem Laden der Seite die Ereignisse binden:
   $(document).ready(function() {
     $spielfeld  = $("#spielfeld");
-    $status = $("#status");
-    $('#los_gehts').button().on('click', spielStarten);
-    $('#anzahl-paare').spinner();
+    $('#los_gehts').on('click', spielStarten);
+    
     $(document).on('click', '.karten-inhalt.verdeckt', karteGeklickt);
+
+    $('#karten-minus').on('click', function() {
+      anzahlKarten = parseInt( $("#anzahl-karten").text() );
+      if(anzahlKarten > 6) {
+        anzahlKarten -= 2;
+        $('#anzahl-karten').html(anzahlKarten);
+      }
+    } );
+
+    $('#karten-plus').on('click', function() {
+      anzahlKarten = parseInt( $("#anzahl-karten").text() );
+      if(anzahlKarten < 52) {
+        anzahlKarten += 2;
+        $('#anzahl-karten').html(anzahlKarten);
+      }
+    } );
+
+    $('#anzahl-karten').on('click', function() {
+      anzahlKarten = parseInt( $("#anzahl-karten").text() );
+      if(anzahlKarten < 52) {
+        anzahlKarten += 2;
+      }
+      else {
+        anzahlKarten = 6;
+      }  
+      $('#anzahl-karten').html(anzahlKarten);     
+    } );
+
   });
 
   function spielStarten() {
-    anzahlPaare = parseInt( $("#anzahl-paare").val() );    
-    if(anzahlPaare < 3 || anzahlPaare > alphabet.length) {
-      $status.html("Nicht weniger als 3, nicht mehr als " + alphabet.length + "!");     
+    anzahlPaare = parseInt( $("#anzahl-karten").text() ) / 2;    
+    // Ganzes Alphabet mischen
+    var gemischteBuchstaben = alphabet.split("");
+    mischen(gemischteBuchstaben);
+    
+    // So viele Buchstaben wie benötigt auswählen:
+    gemischteBuchstaben = gemischteBuchstaben.slice(0, anzahlPaare);
+    
+    // Großbuchstaben dazu:
+    for(var i=0; i < anzahlPaare; i++) {
+      gemischteBuchstaben.push(gemischteBuchstaben[i].toUpperCase());
     }
-    else {
-      // Ganzes Alphabet mischen
-      var gemischteBuchstaben = alphabet.split("");
-      mischen(gemischteBuchstaben);
-      
-      // So viele Buchstaben wie benötigt auswählen:
-      gemischteBuchstaben = gemischteBuchstaben.slice(0, anzahlPaare);
-      
-      // Großbuchstaben dazu:
-      for(var i=0; i < anzahlPaare; i++) {
-        gemischteBuchstaben.push(gemischteBuchstaben[i].toUpperCase());
-      }
-      
-      // Jetzt haben wir alle Karten zusammen, wieder mischen:
-      mischen(gemischteBuchstaben);
+    
+    // Jetzt haben wir alle Karten zusammen, wieder mischen:
+    mischen(gemischteBuchstaben);
 
-      // Schließlich die verdeckten Karten auslegen:
-      kartenAuslegen(gemischteBuchstaben);
-    }
+    // Schließlich die verdeckten Karten auslegen:
+    kartenAuslegen(gemischteBuchstaben);
   }  
   
   // Karte aufdecken oder wieder zuklappen
@@ -50,10 +71,6 @@
 
     var $aufgedeckteKarten = $spielfeld.find('.aufgedeckt');
 
-    if($aufgedeckteKarten.length >= 2) {
-      $status.html("Moment!");
-      return;
-    }
     var buchstabe = $karte.attr('data-buchstabe');
 
     $karte.removeClass('verdeckt');
@@ -66,26 +83,27 @@
       $k2 = $aufgedeckteKarten.eq(1);
       if($k1.attr('data-buchstabe').toUpperCase() 
           == $k2.attr('data-buchstabe').toUpperCase()) {
-        $status.html("Super!");
-
+        // passendes Paar    
         $aufgedeckteKarten.removeClass('aufgedeckt')
                           .addClass('paar-passt', 500, function() {
           $(this).removeClass('paar-passt', 4000);
         } );
-
+        
         if($spielfeld.find('.verdeckt').length == 0) {
-          $status.html("Gewonnen!!! Nochmal?");
+          // Alle aufgedeckt
           $spielfeld.addClass('paar-passt', 2000, function() {
             $(this).removeClass('paar-passt', 3000);
           } );
         }
       } 
       else {
-        $aufgedeckteKarten.addClass('paar-passt-nicht', 3000, function() {
-          $(this).find('.karten-text').addClass('unsichtbar', 1000);
-          $(this).switchClass('aufgedeckt paar-passt-nicht', 'verdeckt', 1000);
+        // passt nicht
+        $aufgedeckteKarten.addClass('paar-passt-nicht', 1000, function() {
+          setTimeout(function() {
+            $aufgedeckteKarten.find('.karten-text').addClass('unsichtbar', 500);
+            $aufgedeckteKarten.switchClass('aufgedeckt paar-passt-nicht', 'verdeckt', 500);
+          }, 3000 );
         } );
-        $status.html("Passt nicht!");
       }
     }      
   };
@@ -102,7 +120,8 @@
 
   // Karten auslegen
   function kartenAuslegen(karten) {
-    $status.html("Es geht los mit " + karten.length + " Karten!");
+    var spielfeldBreite = Math.min($spielfeld.width(), $spielfeld.height() );
+    $spielfeld.attr('style', 'width: ' + spielfeldBreite + 'px');
 
     // Die Karten sollen soweit möglich in einem Quadrat ausgelegt werden
     var anzahlSpalten = Math.sqrt(karten.length);
@@ -113,8 +132,6 @@
       anzahlSpalten = Math.floor(anzahlSpalten) + 1; // eine weitere Spalte benötigt
     }  
 
-    var spielfeldBreite = Math.min($spielfeld.width(), $spielfeld.height() );
-    $spielfeld.attr('style', 'width: ' + spielfeldBreite + 'px');
     
     // Kartengröße an Spielfeldgröße anpassen:
     var kartenbreite = Math.floor( spielfeldBreite / anzahlSpalten );   
@@ -124,7 +141,9 @@
     
     // Karten verdeckt auslegen:
     $spielfeld.empty();
-    for(var i=0; i < karten.length; i++) {
+    
+    
+    kartenAnimieren = function(kartenNr) {
       $neueKarte = $musterKarte.clone();
       
       // Text-Markierung deaktivieren (der Buchstabe wurde beim Anklicken sonst markiert)
@@ -132,12 +151,20 @@
         .css('user-select', 'none')
         .on('selectstart dragstart', false);
         
-      $neueKarte.attr('id', "karte" + i);
-      $neueKarte.find('.karten-inhalt').attr('data-buchstabe', karten[i]);
-      $neueKarte.find(".karten-text").html(karten[i]);      
-      $neueKarte.removeClass("unsichtbar");
-      $spielfeld.append($neueKarte);
-    }
+      $neueKarte.attr('id', "karte" + kartenNr);
+      $neueKarte.find('.karten-inhalt').attr('data-buchstabe', karten[kartenNr]);
+      $neueKarte.find(".karten-text").html(karten[kartenNr]);      
+      $spielfeld.append($neueKarte.fadeIn('fast').removeClass('unsichtbar'));
+      
+      kartenNr++;
+      if(kartenNr < karten.length) {    
+        setTimeout(function() { 
+          kartenAnimieren(kartenNr);                                    
+        }, 250);
+      }
+    };
+    
+    kartenAnimieren(0);
   }
 })();
 

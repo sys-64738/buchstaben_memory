@@ -13,7 +13,7 @@
     
     $(document).on('click', '.karten-inhalt.verdeckt', karteGeklickt);
 
-    $('#karten-minus').on('click', function() {
+    $('#karten-minus').button().on('click', function() {
       anzahlKarten = parseInt( $("#anzahl-karten").text() );
       if(anzahlKarten > 6) {
         anzahlKarten -= 2;
@@ -21,7 +21,7 @@
       }
     } );
 
-    $('#karten-plus').on('click', function() {
+    $('#karten-plus').button().on('click', function() {
       anzahlKarten = parseInt( $("#anzahl-karten").text() );
       if(anzahlKarten < 52) {
         anzahlKarten += 2;
@@ -29,7 +29,7 @@
       }
     } );
 
-    $('#anzahl-karten').on('click', function() {
+    $('#anzahl-karten').button().on('click', function() {
       anzahlKarten = parseInt( $("#anzahl-karten").text() );
       if(anzahlKarten < 52) {
         anzahlKarten += 2;
@@ -70,13 +70,16 @@
     var $karte = $(this);
 
     var $aufgedeckteKarten = $spielfeld.find('.aufgedeckt');
+    if($aufgedeckteKarten.length >= 2) {
+      // Erst warten, aufgedeckte Karten wieder verdeckt wurden!
+      return;
+    }    
 
     var buchstabe = $karte.attr('data-buchstabe');
-
     $karte.removeClass('verdeckt');
     $karte.addClass('aufgedeckt');
-    $karte.find('.karten-text').removeClass('unsichtbar');
-
+    $karte.find('.karten-text').removeClass('unsichtbar');    
+    
     $aufgedeckteKarten = $spielfeld.find('.aufgedeckt');
     if($aufgedeckteKarten.length == 2) {
       $k1 = $aufgedeckteKarten.eq(0);

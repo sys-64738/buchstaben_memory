@@ -20,6 +20,10 @@ body {
   background: #fff;
 }
 
+.ui-widget {
+  font: 100% DruckschriftBayern;  
+}
+
 .mit-rand {
   margin: 10px;
   border: 1px solid blue;

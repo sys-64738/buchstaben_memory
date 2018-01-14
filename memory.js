@@ -9,7 +9,10 @@
   // Nach dem Laden der Seite die Ereignisse binden:
   $(document).ready(function() {
     $spielfeld  = $("#spielfeld");
-    $('#los_gehts').on('click', spielStarten);
+	 
+    startDialogAnzeigen();
+
+    $('#neues-spiel').button().on('click', startDialogAnzeigen);
     
     $(document).on('click', '.karten-inhalt.verdeckt', karteGeklickt);
 
@@ -42,6 +45,25 @@
 
   });
 
+  // Dialog anzeigen zur Auswahl der Kartenanzahl
+  function startDialogAnzeigen() {
+    dialog = $( "#start-dialog" ).dialog({
+      modal: true,
+      width: 'auto',
+      height: 'auto',
+      position: { my: "top", at: "top", of: window },
+      title: "Buchstaben-Memory - Neues Spiel",
+      buttons: {
+        "Start!": function() {
+          $(this).dialog("close");
+        }
+      },
+      close : function() {
+        spielStarten();
+      }
+    });     
+  }
+  
   function spielStarten() {
     anzahlPaare = parseInt( $("#anzahl-karten").text() ) / 2;    
     // Ganzes Alphabet mischen
@@ -94,8 +116,8 @@
         
         if($spielfeld.find('.verdeckt').length == 0) {
           // Alle aufgedeckt
-          $spielfeld.addClass('paar-passt', 2000, function() {
-            $(this).removeClass('paar-passt', 3000);
+          $spielfeld.addClass('paar-passt', 4000, function() {
+            $(this).removeClass('paar-passt', 4000, startDialogAnzeigen);
           } );
         }
       } 

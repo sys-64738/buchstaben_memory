@@ -12,7 +12,6 @@
 	 
     startDialogAnzeigen();
 
-    $('#neues-spiel').on('click', startDialogAnzeigen);
     $('#karten-minus').on('click', function() {
       anzahlKarten = parseInt( $("#anzahl-karten").text() );
       if(anzahlKarten > 6) {
@@ -49,8 +48,8 @@
       modal: true,
       width: 'auto',
       height: 'auto',
-      position: { my: "top", at: "top", of: window },
-      title: "Buchstaben-Memory - Neues Spiel",
+      //position: { my: "top", at: "top", of: window },
+      title: "Neues Spiel",
       buttons: {
         "Start!": function() {
           $(this).dialog("close");
@@ -165,7 +164,6 @@
     // Karten verdeckt auslegen:
     $spielfeld.empty();
     
-    
     kartenAnimieren = function(kartenNr) {
       $neueKarte = $musterKarte.clone();
       
@@ -196,7 +194,7 @@
       if(kartenNr < karten.length) {    
         setTimeout(function() { 
           kartenAnimieren(kartenNr);                                    
-        }, 250);
+        }, 100);
       }
     };
     

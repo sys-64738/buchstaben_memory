@@ -40,6 +40,7 @@ body {
 
 #titel {
   text-align: center;
+  font-size: 125%;
 }
 
 #spielfeld {
@@ -47,6 +48,10 @@ body {
  padding: 1rem 1rem 0 0; 
  margin: 0 auto; 
  position: relative;
+}
+
+.ui-dialog {
+  font-size: 125%;
 }
 
 .horizontal {
@@ -58,11 +63,11 @@ body {
   position: absolute; 
   top:0; 
   right:0; 
-  bottom: 1rem;
-  left: 1rem; 
+  bottom: 0.6rem;
+  left: 0.6rem; 
   border: 1px solid blue;
 
-  /* Zentirerung */
+  /* Zentrierung */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -70,7 +75,7 @@ body {
 }
 
 .karten-text {
-  font-size: 200%;  
+  font-size: 150%;  
 }
 
 .verdeckt {

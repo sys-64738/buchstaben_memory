@@ -2,7 +2,7 @@
 
 // Eine Pseudo-Funktion (IIFE) als Gültigkeitsbereich für unsere Variablen
 (function () { 
-  var alphabet = "abcdefghijklmnopqrstuvwxyz";
+  var alphabet = "abcdefghijklmnopqrstuvwxyzäöüß";
   var anzahlPaare;
   var $spielfeld;
 
@@ -12,11 +12,8 @@
 	 
     startDialogAnzeigen();
 
-    $('#neues-spiel').button().on('click', startDialogAnzeigen);
-    
-    $(document).on('click', '.karten-inhalt.verdeckt', karteGeklickt);
-
-    $('#karten-minus').button().on('click', function() {
+    $('#neues-spiel').on('click', startDialogAnzeigen);
+    $('#karten-minus').on('click', function() {
       anzahlKarten = parseInt( $("#anzahl-karten").text() );
       if(anzahlKarten > 6) {
         anzahlKarten -= 2;
@@ -24,17 +21,17 @@
       }
     } );
 
-    $('#karten-plus').button().on('click', function() {
+    $('#karten-plus').on('click', function() {
       anzahlKarten = parseInt( $("#anzahl-karten").text() );
-      if(anzahlKarten < 52) {
+      if(anzahlKarten < alphabet.length * 2) {
         anzahlKarten += 2;
         $('#anzahl-karten').html(anzahlKarten);
       }
     } );
 
-    $('#anzahl-karten').button().on('click', function() {
+    $('#anzahl-karten').on('click', function() {
       anzahlKarten = parseInt( $("#anzahl-karten").text() );
-      if(anzahlKarten < 52) {
+      if(anzahlKarten < alphabet.length * 2) {
         anzahlKarten += 2;
       }
       else {
@@ -42,7 +39,8 @@
       }  
       $('#anzahl-karten').html(anzahlKarten);     
     } );
-
+    
+    $(document).on('click', '.karten-inhalt.verdeckt', karteGeklickt);
   });
 
   // Dialog anzeigen zur Auswahl der Kartenanzahl
@@ -62,6 +60,7 @@
         spielStarten();
       }
     });     
+
   }
   
   function spielStarten() {
@@ -156,7 +155,6 @@
     else {
       anzahlSpalten = Math.floor(anzahlSpalten) + 1; // eine weitere Spalte benötigt
     }  
-
     
     // Kartengröße an Spielfeldgröße anpassen:
     var kartenbreite = Math.floor( spielfeldBreite / anzahlSpalten );   
@@ -176,9 +174,22 @@
         .css('user-select', 'none')
         .on('selectstart dragstart', false);
         
+      buchstabe = karten[kartenNr];
+      
+      // Q so wie im Lesebuch der Grundschule:
+      if(buchstabe == 'q') {
+        buchstabe = 'qu';
+      }
+      else if(buchstabe == 'Q') {
+        buchstabe = 'Qu';
+      }
+      else if(buchstabe == 'SS') {
+        buchstabe = 'ß';
+      }
+        
       $neueKarte.attr('id', "karte" + kartenNr);
-      $neueKarte.find('.karten-inhalt').attr('data-buchstabe', karten[kartenNr]);
-      $neueKarte.find(".karten-text").html(karten[kartenNr]);      
+      $neueKarte.find('.karten-inhalt').attr('data-buchstabe', buchstabe);
+      $neueKarte.find(".karten-text").html(buchstabe);      
       $spielfeld.append($neueKarte.fadeIn('fast').removeClass('unsichtbar'));
       
       kartenNr++;

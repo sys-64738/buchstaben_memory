@@ -31,6 +31,10 @@ body {
 
 .unsichtbar {
   display: none;
+}
+
+.karten-text-unsichtbar {
+  display: none;
   color: blue;
 }
 
@@ -40,7 +44,6 @@ body {
 
 #spielfeld {
  height: 85%; 
- /*border: 1px solid #ccc; */
  padding: 1rem 1rem 0 0; 
  margin: 0 auto; 
  position: relative;

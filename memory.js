@@ -100,7 +100,7 @@
     var buchstabe = $karte.attr('data-buchstabe');
     $karte.removeClass('verdeckt');
     $karte.addClass('aufgedeckt');
-    $karte.find('.karten-text').removeClass('unsichtbar');    
+    $karte.find('.karten-text').removeClass('karten-text-unsichtbar');    
     
     $aufgedeckteKarten = $spielfeld.find('.aufgedeckt');
     if($aufgedeckteKarten.length == 2) {
@@ -125,7 +125,7 @@
         // passt nicht
         $aufgedeckteKarten.addClass('paar-passt-nicht', 1000, function() {
           setTimeout(function() {
-            $aufgedeckteKarten.find('.karten-text').addClass('unsichtbar', 500);
+            $aufgedeckteKarten.find('.karten-text').addClass('karten-text-unsichtbar', 500);
             $aufgedeckteKarten.switchClass('aufgedeckt paar-passt-nicht', 'verdeckt', 500);
           }, 3000 );
         } );

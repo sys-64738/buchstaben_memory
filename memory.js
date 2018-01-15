@@ -160,6 +160,8 @@
     
     var $musterKarte = $("#musterkarte");
     $musterKarte.attr('style', 'width: ' + kartenbreite + "px; height:" + kartenbreite + 'px;');      
+    $musterKarte.find('.karten-text').css('fontSize', 
+                                           Math.floor(kartenbreite * 0.6) + 'px');                                           
     
     // Karten verdeckt auslegen:
     $spielfeld.empty();

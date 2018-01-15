@@ -74,10 +74,6 @@ body {
   
 }
 
-.karten-text {
-  font-size: 150%;  
-}
-
 .verdeckt {
   background: blue;
   cursor: pointer;

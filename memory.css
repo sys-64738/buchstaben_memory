@@ -2,7 +2,22 @@
     font-family: DruckschriftBayern;
     src: url('Druckschrift_BY_WOK.ttf');
     /* gefunden auf: http://schulschriften.net/kostenlose-schriften */
+    /* Lizenzbedingungen:
+    Die verlinkte Schrift ist im Programm Lesen lernen enthalten. Die Lizenzbedingungen hierfür lauten:
+
+    Die im Programm verwendete Schriftart „Druckschrift_BY_WOK.ttf“ steht – je nach Ihrer Wahl – 
+    unter der „Gnu Free Documentation License“ oder unter der „Creative Commons SA-BY-3.0“-Lizenz.  
+    Bei Verwendung der Schriftart außerhalb des Programms „Lesen Lernen“ ist als Quelle der Schriftart 
+    anzugeben: „Die Schritart ‚Druckschrift BY WOK‘ entstammt dem kostenlosen Programm ‚Lesen Lernen‘ 
+    von Wolfram Esser, www.derwok.de“. */
 }
+
+@font-face {
+    font-family: VereinfachteAusgangsschrift;
+    src: url('VaU30k.ttf');
+    /* gefunden auf: http://www.pelikan.com/pulse/Pulsar/de_DE.CMS.displayCMS.116099./unterrichtshilfen-und-downloads */
+}
+
 /***************************************
    Default Styles
 ************************************** */
@@ -72,6 +87,14 @@ body {
   justify-content: center;
   align-items: center;
   
+}
+
+.druckschrift {
+  font: 100% DruckschriftBayern;  
+}
+
+.schreibschrift {
+  font: 100% VereinfachteAusgangsschrift;  
 }
 
 .verdeckt {

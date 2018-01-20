@@ -38,7 +38,19 @@
       }  
       $('#anzahl-karten').html(anzahlKarten);     
     } );
-    
+
+    // Button Schriftart (Druckschrift/Schreibschrift wechseln)  
+    $('#schriftart').on('click', function() {
+      if ($(this).hasClass('druckschrift')) {
+        $(".druckschrift").switchClass('druckschrift', 'schreibschrift');
+        $(this).html('Schreibschrift')
+      }
+      else {
+        $(".schreibschrift").switchClass('schreibschrift', 'druckschrift');
+        $(this).html('Druckschrift')
+      }
+    } );
+
     $(document).on('click', '.karten-inhalt.verdeckt', karteGeklickt);
   });
 

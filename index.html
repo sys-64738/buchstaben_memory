@@ -13,7 +13,7 @@
     <script src="memory.js"></script>
   </head>
   <body>
-    <div id="titel">
+    <div id="titel" class="druckschrift">
       Buchstaben-Memory <small>von Burkhard Meier</small>
     </div>
     <div id="spielfeld" >
@@ -21,21 +21,19 @@
 
     <div  id="musterkarte" class="horizontal unsichtbar">      
       <div class="karten-inhalt verdeckt">
-        <div class="karten-text karten-text-unsichtbar"></div>
+        <div class="karten-text karten-text-unsichtbar druckschrift"></div>
       </div>
     </div>
 
     <div id="start-dialog" class="unsichtbar">
       <div>
-         Klicke auf <strong>+</strong> oder <strong>-</strong>, 
-         um die Anzahl der Karten einzustellen.<br><br>
-         Dann klicke auf <strong>Start</strong>, und das Spiel beginnt!
-      </div>      
-        <br>        
-      <div>
         Karten: <span class="ui-button" id="anzahl-karten">10</span>
         <span class="ui-button ui-widget" id="karten-plus">+</span>      
         <span class="ui-button ui-widget" id="karten-minus">-</span>      
+      </div>
+      <br>
+      <div>
+        Schrift: <span class="ui-button druckschrift" id="schriftart">Druckschrift</span>
       </div>
     </div>
   </body>

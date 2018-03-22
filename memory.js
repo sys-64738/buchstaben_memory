@@ -43,7 +43,7 @@
     $('#schriftart').on('click', function() {
       if ($(this).hasClass('druckschrift')) {
         $(".druckschrift").switchClass('druckschrift', 'schreibschrift');
-        $(this).html('Schreibschrift')
+        $(this).html('Schr<span class="kursiv">e</span>ib<span class="kursiv">s</span>chr<span class="kursiv">i</span>ft')
       }
       else {
         $(".schreibschrift").switchClass('schreibschrift', 'druckschrift');
@@ -179,7 +179,7 @@
     $spielfeld.empty();
     
     kartenAnimieren = function(kartenNr) {
-      $neueKarte = $musterKarte.clone();
+      var $neueKarte = $musterKarte.clone();
       
       // Text-Markierung deaktivieren (der Buchstabe wurde beim Anklicken sonst markiert)
       $neueKarte.attr('unselectable', 'on')
@@ -198,10 +198,14 @@
       else if(buchstabe == 'SS') {
         buchstabe = 'ß';
       }
-        
+       
       $neueKarte.attr('id', "karte" + kartenNr);
       $neueKarte.find('.karten-inhalt').attr('data-buchstabe', buchstabe);
-      $neueKarte.find(".karten-text").html(buchstabe);      
+      var $kartenText = $neueKarte.find(".karten-text");
+      $kartenText.html(buchstabe);      
+      if(buchstabe == buchstabe.toUpperCase() && buchstabe.length == 1) {
+        $kartenText.addClass("kursiv"); // bei Schreibschrift wird hier der Font Bienchen B benutzt
+      }    
       $spielfeld.append($neueKarte.fadeIn('fast').removeClass('unsichtbar'));
       
       kartenNr++;

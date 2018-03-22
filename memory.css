@@ -13,9 +13,18 @@
 }
 
 @font-face {
-    font-family: VereinfachteAusgangsschrift;
-    src: url('VAu30k.ttf');
-    /* gefunden auf: http://www.pelikan.com/pulse/Pulsar/de_DE.CMS.displayCMS.116099./unterrichtshilfen-und-downloads */
+    font-family: BienchenAusgangsschrift;
+    src: url('Bienchen a.ttf');
+    /* gefunden auf: http://www.peter-wiegel.de/Bienchen.html */
+}
+
+@font-face {
+    font-family: BienchenAusgangsschriftKursiv;
+    /* Bei diesen Buchstaben fehlen bestimmte Verbindungsstriche. Muss man für einzeln
+    dargestellte Großbuchstaben verwenden, und innerhalb der Wörter in bestimmten Fällen,
+    damit die Buchstaben richtig verbunden werden */
+    src: url('Bienchen b.ttf');
+    /* gefunden auf: http://www.peter-wiegel.de/Bienchen.html */
 }
 
 /***************************************
@@ -94,7 +103,15 @@ body {
 }
 
 .schreibschrift {
-  font: 100% VereinfachteAusgangsschrift;  
+  font: 100% BienchenAusgangsschrift;  
+}
+
+.schreibschrift.kursiv {
+  font: 100% BienchenAusgangsschriftKursiv;  
+}
+
+.schreibschrift .kursiv {
+  font: 100% BienchenAusgangsschriftKursiv;  
 }
 
 .verdeckt {
